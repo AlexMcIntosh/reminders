@@ -29,7 +29,8 @@ router.get('/', async (req, res) => {
 router.post('/', async (req, res) => {
     const newReminder = new Reminder({
         name: req.body.name,
-        dueDate: new Date(req.body.dueDate)
+        dueDate: new Date(req.body.dueDate),
+        listId: req.body.listId
     });
 
     try {
