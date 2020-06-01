@@ -1,0 +1,12 @@
+.remindersContainer {
+    text-align: left;
+
+    .remindersHeader {
+        font-size: 1.5rem;
+        font-weight: 700;
+        margin-bottom: .75rem;
+        background: linear-gradient(to right,#dee3fa, #197af8);
+        background-clip: text;
+        color: transparent;
+    }
+}
