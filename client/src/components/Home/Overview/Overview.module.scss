@@ -1,0 +1,20 @@
+.group {
+    padding: 10px 20px;
+    margin: 8px;
+    background-image:linear-gradient(to right, #e1eaf4  , #eaf5f9) ;
+    border-radius: 15px;
+    font-weight: 700;
+    color: darkgray;
+  }
+  
+  .dot {
+    height: 25px;
+    width: 25px;
+    border-radius: 50%;
+    display: inline-block;
+    color: white;
+  }
+  
+  .reminderCount {
+    font-weight: 700;
+  }
