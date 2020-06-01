@@ -8,7 +8,7 @@ const router = Router();
 router.get('/', async (req, res) => {
     try {
         const lists = await List.find();
-        if (!lists) throw Error('No Lists found');
+        if (!lists || lists.length === 0) throw Error('No Lists found');
 
         res.status(200).json(lists);
     }

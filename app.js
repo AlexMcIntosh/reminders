@@ -5,6 +5,7 @@ import config from './config';
 
 // routes
 import listRoutes from './routes/api/lists';
+import reminderRoutes from './routes/api/reminders';
 
 const { MONGO_URI, MONGO_DB_NAME } = config;
 
@@ -24,6 +25,7 @@ mongoose
 
 // Use routes
 app.use('/api/lists', listRoutes);
+app.use('/api/reminders', reminderRoutes);
 
 export default app;
 
