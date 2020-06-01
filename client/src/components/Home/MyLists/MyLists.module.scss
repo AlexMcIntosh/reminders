@@ -1,0 +1,27 @@
+.myListsContainer {
+    margin-top: 1rem;
+    text-align: left;
+
+    @media (min-width: 768px) { 
+        max-width: 638px !important;
+       }
+       
+      // Large devices (desktops, 992px and up)
+      @media (min-width: 992px) {
+        max-width: 992px !important;
+      }
+
+      .myListsHeader {
+          font-size: 1.5rem;
+          font-weight: 700;
+          margin-bottom: .75rem;
+          background: linear-gradient(to right,#dee3fa, #197af8);
+          background-clip: text;
+          color: transparent;
+      }
+}
+
+.listName {
+    font-size: 1.2rem;
+    font-weight: 700;
+}
