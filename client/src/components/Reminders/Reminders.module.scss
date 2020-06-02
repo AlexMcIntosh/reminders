@@ -1,3 +1,5 @@
+@import '../../styles/variables.scss';
+
 .remindersContainer {
     text-align: left;
 
@@ -14,12 +16,12 @@
         border-radius: 20px;
         border: #e1eaf4 1px solid;
         padding: 25px;
-        background: #378bf8;
+        background: $primary;
         margin-bottom: 15px;
         transition: background 0.5s ease-in-out;
 
         &.completed {
-            background: #79b3ff;
+            background: $secondary;
         }
     }
 
@@ -35,5 +37,22 @@
     .dueDate {
         font-size: .8rem;
         color: #e1eaf4;
+    }
+}
+
+.newReminder {
+    margin: none !important;
+    background-color: transparent !important;
+    border: none !important;
+    color: $primary !important;
+    font-weight: 700 !important;
+    font-size: 1.2rem !important;
+
+    &:hover {
+        color: $secondary !important;
+    }
+
+    svg {
+        margin-right: 5px;
     }
 }

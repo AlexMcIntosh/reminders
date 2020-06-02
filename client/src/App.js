@@ -2,7 +2,7 @@ import React from 'react';
 import { Home } from './components/Home/Home';
 import { Reminders } from './components/Reminders/Reminders';
 import { library } from '@fortawesome/fontawesome-svg-core'
-import { faCalendar, faClock, faFlag, faInbox} from '@fortawesome/free-solid-svg-icons';
+import { faCalendar, faClock, faFlag, faInbox } from '@fortawesome/free-solid-svg-icons';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 import './App.scss';
@@ -20,7 +20,7 @@ function App() {
         </Switch>
       </div>
     </Router>
-    
+
   );
 }
 
