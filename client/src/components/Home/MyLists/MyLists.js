@@ -3,7 +3,7 @@ import { Container, Row, ListGroup } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faChevronRight } from '@fortawesome/free-solid-svg-icons'
 
-import './variants.scss';
+import '../../../variants.scss';
 import styles from './MyLists.module.scss'
 
 export const MyLists = () => {

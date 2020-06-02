@@ -1,0 +1,39 @@
+.remindersContainer {
+    text-align: left;
+
+    .remindersHeader {
+        font-size: 1.5rem;
+        font-weight: 700;
+        margin-bottom: .75rem;
+        background: linear-gradient(to right,#dee3fa, #197af8);
+        background-clip: text;
+        color: transparent;
+    }
+
+    .reminder {
+        border-radius: 20px;
+        border: #e1eaf4 1px solid;
+        padding: 25px;
+        background: #378bf8;
+        margin-bottom: 15px;
+        transition: background 0.5s ease-in-out;
+
+        &.completed {
+            background: #79b3ff;
+        }
+    }
+
+    .reminderName {
+        font-weight: 700;
+        color: white;
+
+        &.completed {
+            text-decoration: line-through;
+        }
+    }
+
+    .dueDate {
+        font-size: .8rem;
+        color: #e1eaf4;
+    }
+}
