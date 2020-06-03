@@ -1,5 +1,5 @@
 import React from 'react';
-import { Home } from './components/Home/Home';
+import Home from './components/Home/Home';
 import Reminders from './components/Reminders/Reminders';
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { faCalendar, faClock, faFlag, faInbox } from '@fortawesome/free-solid-svg-icons';

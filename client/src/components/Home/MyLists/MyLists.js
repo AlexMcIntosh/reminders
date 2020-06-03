@@ -1,16 +1,14 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Container, Row, ListGroup } from 'react-bootstrap';
+import { useSelector } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faChevronRight } from '@fortawesome/free-solid-svg-icons'
 
 import '../../../styles/variants.scss';
 import styles from './MyLists.module.scss'
 
-export const MyLists = () => {
-    const [lists, setLists] = useState([
-        { name: "Hello", count: 6 },
-        { name: "Work", count: 8 },
-    ]);
+const MyLists = () => {
+    const { lists } = useSelector(state => state.list)
 
     const faStyle = {
         color: "white"
@@ -37,4 +35,6 @@ export const MyLists = () => {
             </ListGroup>
         </Container>
     );
-}
+};
+
+export default MyLists;

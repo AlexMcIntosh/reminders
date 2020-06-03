@@ -1,6 +1,8 @@
 import { combineReducers } from 'redux';
 import reminderReducer from './reminderReducer';
+import listReducer from './listReducer';
 
 export default combineReducers({
-    reminder: reminderReducer
+    reminder: reminderReducer,
+    list: listReducer
 })

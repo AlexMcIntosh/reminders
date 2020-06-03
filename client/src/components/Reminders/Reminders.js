@@ -3,8 +3,7 @@ import moment from 'moment';
 import { Container, Row, Button } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheck, faPlusCircle } from '@fortawesome/free-solid-svg-icons'
-import { useDispatch, useSelector } from 'react-redux';
-import { getReminders } from '../../redux/actions/reminderActions';
+import { useSelector } from 'react-redux';
 
 import '../../styles/variants.scss'
 import styles from './Reminders.module.scss';
@@ -39,14 +38,13 @@ const Reminder = (props) => {
 
 const Reminders = () => {
     const { reminders } = useSelector(state => state.reminder);
-    const dispatch = useDispatch();
 
     return (
         <Container className={styles.remindersContainer}>
             <div className={styles.remindersHeader}>Hello</div>
             <Container>
                 {reminders.map((reminder, index) => {
-                    return <Reminder key={index} reminder={reminder} dispatch={() => dispatch(getReminders())} />
+                    return <Reminder key={index} reminder={reminder} />
                 })}
                 <Row>
                     <Button className={`align-items-center ${styles.newReminder}`}>
