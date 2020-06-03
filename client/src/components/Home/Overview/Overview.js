@@ -1,17 +1,20 @@
 import React, { useState } from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { useSelector } from 'react-redux';
+import moment from 'moment';
 
 import styles from './Overview.module.scss';
 
 const Group = (props) => {
+    const { list } = props;
+
     const styleObj = {
-        backgroundColor: props.iconColor,
+        backgroundColor: list.iconColor,
         height: "30px",
         width: "30px",
         borderRadius: "50%",
         display: "flex",
-        marginBottom: "8px",
         color: "white"
     };
 
@@ -25,14 +28,14 @@ const Group = (props) => {
             <Container>
                 <Row className="justify-content-between align-items-center">
                     <div style={styleObj}>
-                        <FontAwesomeIcon style={fontIconStyle} icon={props.icon} />
+                        <FontAwesomeIcon style={fontIconStyle} icon={list.icon} />
                     </div>
                     <div>
-                        <h3 className={styles.reminderCount}>8</h3>
+                        <div className={styles.reminderCount}>{list.count}</div>
                     </div>
                 </Row>
                 <Row>
-                    {props.name}
+                    {list.name}
                 </Row>
             </Container>
         </Col>
@@ -40,22 +43,28 @@ const Group = (props) => {
 }
 
 const Overview = () => {
+    const { reminders } = useSelector(state => state.reminder);
+
     const [defaultLists, setList] = useState([
         {
             name: "Today",
             iconColor: "#197bfc",
-            icon: "calendar"
+            icon: "calendar",
+            count: reminders.filter((reminder) => { return moment(new Date(reminder.dueDate)).isSame(moment(), 'd') }).length
         },
         {
             name: "All",
             iconColor: "gray",
-            icon: "inbox"
+            icon: "inbox",
+            count: reminders.length
         }
     ]);
 
+    console.log(defaultLists);
+
     return <Row className="justify-content-center">
         {defaultLists.map((list, index) => {
-            return <Group name={list.name} iconColor={list.iconColor} icon={list.icon} key={index} />
+            return <Group list={list} key={index} />
         })}
     </Row>
 }
