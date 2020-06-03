@@ -3,7 +3,7 @@ import { Button, Container, Row } from 'react-bootstrap';
 
 import styles from './Edit.module.scss';
 
-export const Edit = () => {
+const Edit = () => {
     const [isEditing, setIsEditing] = useState(false);
     return (
         <Container className={styles.editContainer}>
@@ -13,3 +13,5 @@ export const Edit = () => {
         </Container>
     )
 }
+
+export default Edit;

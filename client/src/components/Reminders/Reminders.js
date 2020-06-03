@@ -1,16 +1,17 @@
-import React, { useState, useReducer } from 'react';
+import React, { useReducer } from 'react';
 import moment from 'moment';
 import { Container, Row, Button } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCheck } from '@fortawesome/free-solid-svg-icons'
+import { faCheck, faPlusCircle } from '@fortawesome/free-solid-svg-icons'
+import { useSelector } from 'react-redux';
 
-import '../../variants.scss'
+import '../../styles/variants.scss'
 import styles from './Reminders.module.scss';
 
 const reminderReducer = (state, action) => {
     switch (action.type) {
         case 'toggle':
-            return {...state, isCompleted: !state.isCompleted};
+            return { ...state, isCompleted: !state.isCompleted };
         default:
             throw new Error();
     }
@@ -21,10 +22,10 @@ const Reminder = (props) => {
 
     return (
         <Row className={state.isCompleted ? `${styles.reminder} align-items-center ${styles.completed}` : `${styles.reminder} align-items-center`}>
-            <Button variant={state.isCompleted ? 'reminder-complete' : 'reminder'} onClick={() => dispatch({type: 'toggle'})}>
+            <Button variant={state.isCompleted ? 'reminder-complete' : 'reminder'} onClick={() => dispatch({ type: 'toggle' })}>
                 <FontAwesomeIcon icon={faCheck} />
             </Button>
-            <div className={state.isCompleted ? `${styles.reminderName} ${styles.completed}` : styles.reminderName }>
+            <div className={state.isCompleted ? `${styles.reminderName} ${styles.completed}` : styles.reminderName}>
                 {state.name}
                 <div className={styles.dueDate}>
                     {moment(new Date(state.dueDate)).format("MMM Do YY")}
@@ -34,21 +35,9 @@ const Reminder = (props) => {
     )
 }
 
-export const Reminders = (props) => {
-    const [reminders, setReminders] = useState([
-        {
-            name: "Take out trash",
-            dueDate: "2020-06-01T04:02:14.301Z",
-            listId: "",
-            completed: false
-        },
-        {
-            name: "Set the world on fire",
-            dueDate: "2020-09-01T04:02:14.301Z",
-            listId: "",
-            completed: false
-        }
-    ]);
+
+const Reminders = () => {
+    const { reminders } = useSelector(state => state.reminder);
 
     return (
         <Container className={styles.remindersContainer}>
@@ -57,7 +46,14 @@ export const Reminders = (props) => {
                 {reminders.map((reminder, index) => {
                     return <Reminder key={index} reminder={reminder} />
                 })}
+                <Row>
+                    <Button className={`align-items-center ${styles.newReminder}`}>
+                        <FontAwesomeIcon icon={faPlusCircle} /> New Reminder
+                    </Button>
+                </Row>
             </Container>
         </Container>
     )
 }
+
+export default Reminders;

@@ -25,7 +25,7 @@ const Group = (props) => {
             <Container>
                 <Row className="justify-content-between align-items-center">
                     <div style={styleObj}>
-                        <FontAwesomeIcon style={fontIconStyle} icon={props.icon}/>
+                        <FontAwesomeIcon style={fontIconStyle} icon={props.icon} />
                     </div>
                     <div>
                         <h3 className={styles.reminderCount}>8</h3>
@@ -39,7 +39,7 @@ const Group = (props) => {
     )
 }
 
-export const Overview = () => {
+const Overview = () => {
     const [defaultLists, setList] = useState([
         {
             name: "Today",
@@ -54,8 +54,10 @@ export const Overview = () => {
     ]);
 
     return <Row className="justify-content-center">
-            {defaultLists.map((list, index) => {
-               return <Group name={list.name} iconColor={list.iconColor} icon={list.icon} key={index}/>
-            })}
-        </Row>
+        {defaultLists.map((list, index) => {
+            return <Group name={list.name} iconColor={list.iconColor} icon={list.icon} key={index} />
+        })}
+    </Row>
 }
+
+export default Overview;
