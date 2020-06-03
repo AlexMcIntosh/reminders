@@ -1,8 +1,10 @@
-import React, { useState, useReducer } from 'react';
+import React, { useReducer } from 'react';
 import moment from 'moment';
 import { Container, Row, Button } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheck, faPlusCircle } from '@fortawesome/free-solid-svg-icons'
+import { useDispatch, useSelector } from 'react-redux';
+import { getReminders } from '../../redux/actions/reminderActions';
 
 import '../../styles/variants.scss'
 import styles from './Reminders.module.scss';
@@ -34,28 +36,17 @@ const Reminder = (props) => {
     )
 }
 
-export const Reminders = (props) => {
-    const [reminders, setReminders] = useState([
-        {
-            name: "Take out trash",
-            dueDate: "2020-06-01T04:02:14.301Z",
-            listId: "",
-            completed: false
-        },
-        {
-            name: "Set the world on fire",
-            dueDate: "2020-09-01T04:02:14.301Z",
-            listId: "",
-            completed: false
-        }
-    ]);
+
+const Reminders = () => {
+    const { reminders } = useSelector(state => state.reminder);
+    const dispatch = useDispatch();
 
     return (
         <Container className={styles.remindersContainer}>
             <div className={styles.remindersHeader}>Hello</div>
             <Container>
                 {reminders.map((reminder, index) => {
-                    return <Reminder key={index} reminder={reminder} />
+                    return <Reminder key={index} reminder={reminder} dispatch={() => dispatch(getReminders())} />
                 })}
                 <Row>
                     <Button className={`align-items-center ${styles.newReminder}`}>
@@ -66,3 +57,5 @@ export const Reminders = (props) => {
         </Container>
     )
 }
+
+export default Reminders;
