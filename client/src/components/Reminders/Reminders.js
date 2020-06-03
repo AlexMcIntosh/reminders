@@ -47,7 +47,7 @@ const Reminders = () => {
                     return <Reminder key={index} reminder={reminder} />
                 })}
                 <Row>
-                    <Button className={`align-items-center ${styles.newReminder}`}>
+                    <Button variant='new' className='align-items-center'>
                         <FontAwesomeIcon icon={faPlusCircle} /> New Reminder
                     </Button>
                 </Row>

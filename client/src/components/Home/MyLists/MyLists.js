@@ -1,8 +1,8 @@
 import React from 'react';
-import { Container, Row, ListGroup } from 'react-bootstrap';
+import { Button, Container, Row, ListGroup } from 'react-bootstrap';
 import { useSelector } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faChevronRight } from '@fortawesome/free-solid-svg-icons'
+import { faPlusCircle, faChevronRight } from '@fortawesome/free-solid-svg-icons'
 
 import '../../../styles/variants.scss';
 import styles from './MyLists.module.scss'
@@ -33,6 +33,11 @@ const MyLists = () => {
                     </ListGroup.Item>
                 })}
             </ListGroup>
+            <Row>
+                <Button variant='new' className='align-items-center'>
+                    <FontAwesomeIcon icon={faPlusCircle} /> Add List
+                </Button>
+            </Row>
         </Container>
     );
 };

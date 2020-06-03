@@ -39,20 +39,3 @@
         color: #e1eaf4;
     }
 }
-
-.newReminder {
-    margin: none !important;
-    background-color: transparent !important;
-    border: none !important;
-    color: $primary !important;
-    font-weight: 700 !important;
-    font-size: 1.2rem !important;
-
-    &:hover {
-        color: $secondary !important;
-    }
-
-    svg {
-        margin-right: 5px;
-    }
-}
