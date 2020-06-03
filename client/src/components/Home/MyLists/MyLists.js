@@ -1,14 +1,16 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Button, Container, Row, ListGroup } from 'react-bootstrap';
 import { useSelector } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlusCircle, faChevronRight } from '@fortawesome/free-solid-svg-icons'
+import AddListModal from './AddListModal/AddListModal';
 
 import '../../../styles/variants.scss';
 import styles from './MyLists.module.scss'
 
 const MyLists = () => {
     const { lists } = useSelector(state => state.list)
+    const [modalShow, setModalShow] = useState(false);
 
     const faStyle = {
         color: "white"
@@ -34,10 +36,11 @@ const MyLists = () => {
                 })}
             </ListGroup>
             <Row>
-                <Button variant='new' className='align-items-center'>
+                <Button variant='new' className='align-items-center' onClick={() => setModalShow(true)}>
                     <FontAwesomeIcon icon={faPlusCircle} /> Add List
                 </Button>
             </Row>
+            <AddListModal show={modalShow} onHide={() => setModalShow(false)}></AddListModal>
         </Container>
     );
 };
