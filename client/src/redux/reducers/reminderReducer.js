@@ -1,4 +1,4 @@
-import { GET_REMINDERS, ADD_REMINDER, DELETE_REMINDER } from './../actions/types';
+import { GET_REMINDERS } from './../actions/types';
 
 const initialState = {
     reminders: [
