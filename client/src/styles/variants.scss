@@ -1,3 +1,5 @@
+@import './variables.scss';
+
 .list-group-item-reminderList {
     background-image: linear-gradient(to right, #378bf8  , #197af8);
     color: white ;
@@ -11,9 +13,56 @@
     margin-right: 15px;
 }
 
+.btn-primary {
+    background-color: $primary !important;
+    border: none !important;
+    font-weight: 700 !important;
+
+    &:hover {
+        background-color: $secondary !important;
+        border-color: $primary !important;
+    }
+
+}
+
 .btn-reminder-complete {
     background-color: #79ff96 !important;
     color: #49d167 !important;
     padding: 10px 10px !important;
     margin-right: 15px;
+}
+
+.btn-new {
+    margin: none !important;
+    background-color: transparent !important;
+    border: none !important;
+    color: $primary !important;
+    font-weight: 700 !important;
+    font-size: 1.2rem !important;
+
+    &:hover {
+        color: $secondary !important;
+    }
+
+    svg {
+        margin-right: 5px;
+    }
+}
+
+//react-date-picker
+.react-calendar__month-view__days__day--weekend {
+    color: $primary !important;
+}
+
+.react-date-picker__wrapper {
+    border: none !important;
+}
+
+.react-date-picker {
+    margin-bottom: 1rem;
+}
+
+.react-calendar {
+    border-radius: 5px;
+    font-weight: 700 !important;
 }

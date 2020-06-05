@@ -1,4 +1,4 @@
-import React, { useReducer } from 'react';
+import React, { useState, useReducer } from 'react';
 import moment from 'moment';
 import { Container, Row, Button } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -7,6 +7,7 @@ import { useSelector } from 'react-redux';
 
 import '../../styles/variants.scss'
 import styles from './Reminders.module.scss';
+import AddReminderModal from './AddReminderModal.js/AddReminderModal';
 
 const reminderReducer = (state, action) => {
     switch (action.type) {
@@ -38,6 +39,7 @@ const Reminder = (props) => {
 
 const Reminders = () => {
     const { reminders } = useSelector(state => state.reminder);
+    const [modalShow, setModalShow] = useState(false);
 
     return (
         <Container className={styles.remindersContainer}>
@@ -47,11 +49,12 @@ const Reminders = () => {
                     return <Reminder key={index} reminder={reminder} />
                 })}
                 <Row>
-                    <Button className={`align-items-center ${styles.newReminder}`}>
+                    <Button variant='new' className='align-items-center' onClick={() => setModalShow(true)}>
                         <FontAwesomeIcon icon={faPlusCircle} /> New Reminder
                     </Button>
                 </Row>
             </Container>
+            <AddReminderModal show={modalShow} onHide={() => setModalShow(false)} />
         </Container>
     )
 }
