@@ -15,7 +15,8 @@
 
 .btn-primary {
     background-color: $primary !important;
-    border-color: $secondary !important;
+    border: none !important;
+    font-weight: 700 !important;
 
     &:hover {
         background-color: $secondary !important;
@@ -46,4 +47,22 @@
     svg {
         margin-right: 5px;
     }
+}
+
+//react-date-picker
+.react-calendar__month-view__days__day--weekend {
+    color: $primary !important;
+}
+
+.react-date-picker__wrapper {
+    border: none !important;
+}
+
+.react-date-picker {
+    margin-bottom: 1rem;
+}
+
+.react-calendar {
+    border-radius: 5px;
+    font-weight: 700 !important;
 }
