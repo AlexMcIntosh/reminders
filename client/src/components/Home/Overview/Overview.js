@@ -60,8 +60,6 @@ const Overview = () => {
         }
     ]);
 
-    console.log(defaultLists);
-
     return <Row className="justify-content-center">
         {defaultLists.map((list, index) => {
             return <Group list={list} key={index} />
