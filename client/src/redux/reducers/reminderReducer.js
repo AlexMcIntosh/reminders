@@ -6,7 +6,7 @@ const initialState = {
             id: "001",
             name: "Take out trash",
             dueDate: "2020-06-01T04:02:14.301Z",
-            listId: "",
+            listId: "555",
             completed: false
         },
         {
