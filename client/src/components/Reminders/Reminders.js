@@ -39,12 +39,14 @@ const Reminder = (props) => {
 
 const Reminders = (props) => {
     const { listId } = props.match.params;
+    const { lists } = useSelector(state => state.list);
     const { reminders } = useSelector(state => state.reminder);
+    const [list] = useState(lists.find(list => { return list.id === listId }));
     const [modalShow, setModalShow] = useState(false);
 
     return (
         <Container className={styles.remindersContainer}>
-            <div className={styles.remindersHeader}>Hello</div>
+            <div className={styles.remindersHeader}>{list.name}</div>
             <Container>
                 {reminders
                     .filter(reminder => { return reminder.listId === listId })
