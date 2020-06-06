@@ -3,33 +3,26 @@ import moment from 'moment';
 import { Container, Row, Button } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheck, faPlusCircle } from '@fortawesome/free-solid-svg-icons'
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { completeReminder } from '../../redux/actions/reminderActions';
 
 import '../../styles/variants.scss'
 import styles from './Reminders.module.scss';
 import AddReminderModal from './AddReminderModal.js/AddReminderModal';
 
-const reminderReducer = (state, action) => {
-    switch (action.type) {
-        case 'toggle':
-            return { ...state, isCompleted: !state.isCompleted };
-        default:
-            throw new Error();
-    }
-};
-
 const Reminder = (props) => {
-    const [state, dispatch] = useReducer(reminderReducer, props.reminder);
+    const { reminder } = props;
+    const dispatch = useDispatch();
 
     return (
-        <Row className={state.isCompleted ? `${styles.reminder} align-items-center ${styles.completed}` : `${styles.reminder} align-items-center`}>
-            <Button variant={state.isCompleted ? 'reminder-complete' : 'reminder'} onClick={() => dispatch({ type: 'toggle' })}>
+        <Row className={reminder.isCompleted ? `${styles.reminder} align-items-center ${styles.completed}` : `${styles.reminder} align-items-center`}>
+            <Button variant={reminder.isCompleted ? 'reminder-complete' : 'reminder'} onClick={() => dispatch(completeReminder(reminder.id))}>
                 <FontAwesomeIcon icon={faCheck} />
             </Button>
-            <div className={state.isCompleted ? `${styles.reminderName} ${styles.completed}` : styles.reminderName}>
-                {state.name}
+            <div className={reminder.isCompleted ? `${styles.reminderName} ${styles.completed}` : styles.reminderName}>
+                {reminder.name}
                 <div className={styles.dueDate}>
-                    {moment(new Date(state.dueDate)).format("MMM Do YY")}
+                    {moment(new Date(reminder.dueDate)).format("MMM Do YY")}
                 </div>
             </div>
         </Row>
@@ -37,17 +30,22 @@ const Reminder = (props) => {
 }
 
 
-const Reminders = () => {
+const Reminders = (props) => {
+    const { listId } = props.match.params;
+    const { lists } = useSelector(state => state.list);
     const { reminders } = useSelector(state => state.reminder);
+    const [list] = useState(lists.find(list => { return list.id === listId }));
     const [modalShow, setModalShow] = useState(false);
 
     return (
         <Container className={styles.remindersContainer}>
-            <div className={styles.remindersHeader}>Hello</div>
+            <div className={styles.remindersHeader}>{list.name}</div>
             <Container>
-                {reminders.map((reminder, index) => {
-                    return <Reminder key={index} reminder={reminder} />
-                })}
+                {reminders
+                    .filter(reminder => { return reminder.listId === listId })
+                    .map((reminder, index) => {
+                        return <Reminder key={index} reminder={reminder} />
+                    })}
                 <Row>
                     <Button variant='new' className='align-items-center' onClick={() => setModalShow(true)}>
                         <FontAwesomeIcon icon={faPlusCircle} /> New Reminder

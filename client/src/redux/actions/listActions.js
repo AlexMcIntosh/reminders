@@ -16,7 +16,7 @@ export const addList = (list) => {
 export const editList = (isEditing) => {
     return {
         type: EDIT_LIST,
-        payload: !isEditing
+        payload: isEditing
     }
 }
 
