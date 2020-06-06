@@ -28,7 +28,7 @@ export default function (state = initialState, action) {
         case EDIT_LIST:
             return {
                 ...state,
-                isEditing: action.payload
+                isEditing: !action.payload
             };
         case DELETE_LIST:
             return {
