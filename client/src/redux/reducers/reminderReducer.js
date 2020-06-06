@@ -1,4 +1,4 @@
-import { GET_REMINDERS } from './../actions/types';
+import { GET_REMINDERS, ADD_REMINDER } from './../actions/types';
 
 const initialState = {
     reminders: [
@@ -25,6 +25,11 @@ export default function (state = initialState, action) {
             return {
                 ...state
             };
+        case ADD_REMINDER:
+            return {
+                ...state,
+                reminders: [...state.reminders, action.payload]
+            }
         default:
             return state
     }

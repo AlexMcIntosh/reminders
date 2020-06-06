@@ -5,3 +5,10 @@ export const getReminders = () => {
         type: GET_REMINDERS
     };
 }
+
+export const addReminder = (reminder) => {
+    return {
+        type: ADD_REMINDER,
+        payload: reminder
+    };
+}
