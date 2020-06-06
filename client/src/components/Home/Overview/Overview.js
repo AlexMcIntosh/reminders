@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
+import { useHistory } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useSelector } from 'react-redux';
 import moment from 'moment';
@@ -8,6 +9,7 @@ import styles from './Overview.module.scss';
 
 const Group = (props) => {
     const { list } = props;
+    const history = useHistory();
 
     const styleObj = {
         backgroundColor: list.iconColor,
@@ -25,7 +27,7 @@ const Group = (props) => {
 
     return (
         <Col xs="5" className={styles.group}>
-            <Container>
+            <Container onClick={() => history.push('/reminders/')}>
                 <Row className="justify-content-between align-items-center">
                     <div style={styleObj}>
                         <FontAwesomeIcon style={fontIconStyle} icon={list.icon} />
