@@ -37,7 +37,8 @@ const Reminder = (props) => {
 }
 
 
-const Reminders = () => {
+const Reminders = (props) => {
+    const { listId } = props.match.params;
     const { reminders } = useSelector(state => state.reminder);
     const [modalShow, setModalShow] = useState(false);
 
@@ -45,9 +46,11 @@ const Reminders = () => {
         <Container className={styles.remindersContainer}>
             <div className={styles.remindersHeader}>Hello</div>
             <Container>
-                {reminders.map((reminder, index) => {
-                    return <Reminder key={index} reminder={reminder} />
-                })}
+                {reminders
+                    .filter(reminder => { return reminder.listId === listId })
+                    .map((reminder, index) => {
+                        return <Reminder key={index} reminder={reminder} />
+                    })}
                 <Row>
                     <Button variant='new' className='align-items-center' onClick={() => setModalShow(true)}>
                         <FontAwesomeIcon icon={faPlusCircle} /> New Reminder
