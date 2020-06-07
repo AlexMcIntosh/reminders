@@ -1,9 +1,7 @@
 import React, { useState } from 'react';
 import { Button, Modal, InputGroup, FormControl } from 'react-bootstrap';
-import moment from 'moment';
 import DatePicker from 'react-date-picker';
 import { addReminder } from '../../../redux/actions/reminderActions';
-
 import '../../../styles/variants.scss';
 import { useDispatch } from 'react-redux';
 
@@ -15,8 +13,9 @@ const AddReminderModal = (props) => {
     const saveReminder = () => {
         const newReminder = {
             name: reminderName,
-            dueDate: reminderDate
+            dueDate: reminderDate.toISOString()
         };
+
         dispatch(addReminder(newReminder));
 
         props.onHide();

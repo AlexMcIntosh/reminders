@@ -27,7 +27,7 @@ const Group = (props) => {
 
     return (
         <Col xs="5" className={styles.group}>
-            <Container onClick={() => history.push('/reminders/')}>
+            <Container onClick={() => history.push(list.redirectPath)}>
                 <Row className="justify-content-between align-items-center">
                     <div style={styleObj}>
                         <FontAwesomeIcon style={fontIconStyle} icon={list.icon} />
@@ -52,13 +52,15 @@ const Overview = () => {
             name: "Today",
             iconColor: "#197bfc",
             icon: "calendar",
-            count: reminders.filter((reminder) => { return moment(new Date(reminder.dueDate)).isSame(moment(), 'd') }).length
+            count: reminders.filter((reminder) => { return moment(reminder.dueDate).isSame(moment(), 'd') }).length,
+            redirectPath: '/reminders/today'
         },
         {
             name: "All",
             iconColor: "gray",
             icon: "inbox",
-            count: reminders.length
+            count: reminders.length,
+            redirectPath: '/reminders/'
         }
     ]);
 

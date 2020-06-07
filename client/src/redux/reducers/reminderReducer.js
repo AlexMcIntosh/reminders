@@ -5,7 +5,7 @@ const initialState = {
         {
             id: "001",
             name: "Take out trash",
-            dueDate: "2020-06-01T04:02:14.301Z",
+            dueDate: "2020-06-06T07:00:00.000Z",
             listId: "555",
             isCompleted: false
         },
