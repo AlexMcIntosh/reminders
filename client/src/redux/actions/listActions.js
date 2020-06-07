@@ -1,9 +1,18 @@
+import axios from 'axios';
+
 import { GET_LISTS, DELETE_LIST, EDIT_LIST, ADD_LIST } from './types';
 
-export const getLists = () => {
-    return {
-        type: GET_LISTS
-    };
+export const getLists = () => dispatch => {
+    axios.get('/api/lists')
+        .then(res => {
+            dispatch({
+                type: GET_LISTS,
+                payload: res.data
+            });
+        })
+        .catch(err => {
+            console.log(err);
+        });
 }
 
 export const addList = (list) => {
