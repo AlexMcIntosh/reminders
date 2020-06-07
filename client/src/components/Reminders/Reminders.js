@@ -22,7 +22,7 @@ const Reminder = (props) => {
             <div className={reminder.isCompleted ? `${styles.reminderName} ${styles.completed}` : styles.reminderName}>
                 {reminder.name}
                 <div className={styles.dueDate}>
-                    {moment(new Date(reminder.dueDate)).format("MMM Do YY")}
+                    {moment(reminder.dueDate).format("MMM Do YYYY")}
                 </div>
             </div>
         </Row>
@@ -36,16 +36,23 @@ const Reminders = (props) => {
     const { reminders } = useSelector(state => state.reminder);
     const [list] = useState(lists.find(list => { return list.id === listId }));
     const [modalShow, setModalShow] = useState(false);
+    const [isTodayList] = useState(listId === 'today');
 
     const filterReminders = (list) => {
+        if (isTodayList) {
+            return reminders.filter(reminder => { return moment(reminder.dueDate).isSame(moment(), 'd') });
+        }
+
         return list
             ? reminders.filter(reminder => { return reminder.listId === listId })
             : reminders;
     }
 
+    const header = list ? list.name : isTodayList ? 'Today' : "All";
+
     return (
         <Container className={styles.remindersContainer}>
-            <div className={styles.remindersHeader}>{list ? list.name : "All"}</div>
+            <div className={styles.remindersHeader}>{header}</div>
             <Container>
                 {filterReminders(list).map((reminder, index) => {
                     return <Reminder key={index} reminder={reminder} />
