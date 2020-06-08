@@ -1,5 +1,5 @@
 # Reminders
-Reminders is a iOS inspired reminders app built using the MERN stack.
+Reminders is a iOS inspired reminders React app built using the MERN stack.
 
 ## Quick start
 
