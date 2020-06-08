@@ -1,14 +1,17 @@
 import axios from 'axios';
 
 import { GET_LISTS, DELETE_LIST, EDIT_LIST, ADD_LIST } from './types';
+import { setLoading } from './loadingActions';
 
 export const getLists = () => dispatch => {
+    dispatch(setLoading());
     axios.get('/api/lists')
         .then(res => {
             dispatch({
                 type: GET_LISTS,
                 payload: res.data
             });
+            dispatch(setLoading());
         })
         .catch(err => {
             console.log(err);

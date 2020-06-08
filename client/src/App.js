@@ -4,6 +4,7 @@ import Reminders from './components/Reminders/Reminders';
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { faCalendar, faClock, faFlag, faInbox } from '@fortawesome/free-solid-svg-icons';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import Loading from './components/Loading/Loading';
 import { Provider } from 'react-redux';
 import store from './redux/store';
 
@@ -21,6 +22,7 @@ function App() {
             <Route path="/" exact component={Home} />
             <Route path="/reminders/:listId?" component={Reminders} />
           </Switch>
+          <Loading />
         </div>
       </Router>
     </Provider>
