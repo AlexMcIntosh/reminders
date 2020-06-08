@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { Button, Container, Row, ListGroup } from 'react-bootstrap';
 import { useSelector, useDispatch } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlusCircle, faChevronRight, faTrashAlt } from '@fortawesome/free-solid-svg-icons'
 import AddListModal from './AddListModal/AddListModal';
-import { deleteList } from '../../../redux/actions/listActions';
+import { getLists, deleteList } from '../../../redux/actions/listActions';
 
 import '../../../styles/variants.scss';
 import styles from './MyLists.module.scss'
@@ -26,6 +26,10 @@ const MyLists = (props) => {
     const viewReminders = (listId) => {
         history.push(`/reminders/${listId}`);
     }
+
+    useEffect(() => {
+        dispatch(getLists());
+    }, []);
 
     return (
         <Container className={styles.myListsContainer}>

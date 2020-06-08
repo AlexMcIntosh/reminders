@@ -23,7 +23,7 @@ const AddListModal = (props) => {
                         aria-describedby="basic-addon2"
                     />
                     <InputGroup.Append>
-                        <Button variant="primary" onClick={() => addNewList()}>Add</Button>
+                        <Button variant="primary" onClick={() => addNewList()} disabled={!listName}>Add</Button>
                     </InputGroup.Append>
                 </InputGroup>
             </Modal.Body>

@@ -32,7 +32,7 @@ const AddReminderModal = (props) => {
                     />
                 </InputGroup>
                 <DatePicker onChange={setReminderDate} value={reminderDate}></DatePicker>
-                <Button variant='primary' size="lg" block onClick={() => saveReminder()}>
+                <Button variant='primary' size="lg" block onClick={() => saveReminder()} disabled={!reminderName || !reminderDate}>
                     Create Reminder
                 </Button>
             </Modal.Body>
