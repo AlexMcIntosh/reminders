@@ -1,22 +1,47 @@
 import { GET_REMINDERS, ADD_REMINDER, COMPLETE_REMINDER } from './types';
+import axios from 'axios';
+import { setLoading } from './loadingActions';
 
-export const getReminders = () => {
-    return {
-        type: GET_REMINDERS
-    };
+
+export const getReminders = () => dispatch => {
+    dispatch(setLoading());
+    axios.get('/api/reminders')
+        .then(res => {
+            dispatch({
+                type: GET_REMINDERS,
+                payload: res.data
+            });
+        })
+        .then(() => dispatch(setLoading()))
+        .catch(err => console.log(err));
 }
 
-export const addReminder = (reminder) => {
-    return {
-        type: ADD_REMINDER,
-        payload: reminder
-    };
+export const addReminder = (reminder) => dispatch => {
+    dispatch(setLoading());
+    axios
+        .post('/api/reminders', reminder)
+        .then(res => {
+            dispatch({
+                type: ADD_REMINDER,
+                payload: reminder
+            });
+        })
+        .then(() => dispatch(getReminders()))
+        .then(() => dispatch(setLoading()))
+        .catch(err => console.log(err));
 }
 
-export const completeReminder = (id) => {
-    console.log(id);
-    return {
-        type: COMPLETE_REMINDER,
-        payload: id
-    };
+export const completeReminder = (reminder) => dispatch => {
+    dispatch(setLoading());
+    axios
+        .put(`/api/reminders/${reminder._id}`, reminder)
+        .then(res => {
+            dispatch({
+                type: COMPLETE_REMINDER,
+                payload: reminder
+            });
+        })
+        .then(() => dispatch(getReminders()))
+        .then(() => dispatch(setLoading()))
+        .catch(err => console.log(err));
 }

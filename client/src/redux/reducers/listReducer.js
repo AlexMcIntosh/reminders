@@ -25,7 +25,7 @@ export default function (state = initialState, action) {
         case DELETE_LIST:
             return {
                 ...state,
-                lists: state.lists.filter(list => list.id !== action.payload)
+                lists: state.lists.filter(list => list._id !== action.payload)
             };
         default:
             return state;

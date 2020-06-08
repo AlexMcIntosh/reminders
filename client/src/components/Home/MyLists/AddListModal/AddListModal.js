@@ -8,7 +8,7 @@ const AddListModal = (props) => {
     const dispatch = useDispatch();
 
     const addNewList = () => {
-        dispatch(addList({ id: 'someId', name: listName }));
+        dispatch(addList({ name: listName }));
         props.onHide();
     }
 

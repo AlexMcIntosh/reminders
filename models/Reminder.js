@@ -10,6 +10,9 @@ const ReminderSchema = new Schema({
     },
     listId: {
         type: String
+    },
+    isCompleted: {
+        type: Boolean
     }
 });
 

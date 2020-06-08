@@ -10,10 +10,20 @@ const AddReminderModal = (props) => {
     const [reminderDate, setReminderDate] = useState();
     const dispatch = useDispatch();
 
+    const getListId = (listId) => {
+        if (listId && listId !== 'today') {
+            return listId;
+        }
+
+        return '';
+    }
+
     const saveReminder = () => {
         const newReminder = {
             name: reminderName,
-            dueDate: reminderDate.toISOString()
+            dueDate: reminderDate.toISOString(),
+            listId: getListId(props.listId),
+            isCompleted: false
         };
 
         dispatch(addReminder(newReminder));
