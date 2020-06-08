@@ -52,6 +52,5 @@ npm run client
 npm run server
 ```
 # Demo
-![Home](/images/Home.png)
-
-![Reminders](/images/Reminders.png)
+<img src="./images/Home.png" width=400/>
+<img src="./images/Reminders.png" width=400/>
