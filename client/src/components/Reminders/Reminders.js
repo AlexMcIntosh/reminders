@@ -1,10 +1,10 @@
-import React, { useState, useReducer } from 'react';
+import React, { useState, useEffect } from 'react';
 import moment from 'moment';
 import { Container, Row, Button } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheck, faPlusCircle } from '@fortawesome/free-solid-svg-icons'
 import { useSelector, useDispatch } from 'react-redux';
-import { completeReminder } from '../../redux/actions/reminderActions';
+import { completeReminder, getReminders } from '../../redux/actions/reminderActions';
 
 import '../../styles/variants.scss'
 import styles from './Reminders.module.scss';
@@ -14,9 +14,14 @@ const Reminder = (props) => {
     const { reminder } = props;
     const dispatch = useDispatch();
 
+    const handleCompletion = () => {
+        reminder.isCompleted = !reminder.isCompleted;
+        dispatch(completeReminder(reminder));
+    }
+
     return (
         <Row className={reminder.isCompleted ? `${styles.reminder} align-items-center ${styles.completed}` : `${styles.reminder} align-items-center`}>
-            <Button variant={reminder.isCompleted ? 'reminder-complete' : 'reminder'} onClick={() => dispatch(completeReminder(reminder.id))}>
+            <Button variant={reminder.isCompleted ? 'reminder-complete' : 'reminder'} onClick={() => handleCompletion()}>
                 <FontAwesomeIcon icon={faCheck} />
             </Button>
             <div className={reminder.isCompleted ? `${styles.reminderName} ${styles.completed}` : styles.reminderName}>
@@ -37,6 +42,7 @@ const Reminders = (props) => {
     const [list] = useState(lists.find(list => { return list._id === listId }));
     const [modalShow, setModalShow] = useState(false);
     const [isTodayList] = useState(listId === 'today');
+    const dispatch = useDispatch();
 
     const filterReminders = (list) => {
         if (isTodayList) {
@@ -49,6 +55,11 @@ const Reminders = (props) => {
     }
 
     const header = list ? list.name : isTodayList ? 'Today' : "All";
+
+    useEffect(() => {
+        dispatch(getReminders());
+        console.log(reminders);
+    }, []);
 
     return (
         <Container className={styles.remindersContainer}>
@@ -63,7 +74,7 @@ const Reminders = (props) => {
                     </Button>
                 </Row>
             </Container>
-            <AddReminderModal show={modalShow} onHide={() => setModalShow(false)} />
+            <AddReminderModal listId={listId} show={modalShow} onHide={() => setModalShow(false)} />
         </Container>
     )
 }

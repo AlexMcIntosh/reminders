@@ -9,17 +9,11 @@ const router = Router();
 router.get('/', async (req, res) => {
     try {
         const reminders = await Reminder.find();
-        if (!reminders || reminders.length === 0) throw Error('No Reminders found');
 
         res.status(200).json(reminders);
     }
     catch (err) {
-        if (err.message === 'No Reminders found') {
-            res.status(404).json({ message: err.message });
-        }
-        else {
-            res.status(400).json({ message: err.message });
-        }
+        res.status(400).json({ message: err.message });
     }
 });
 
@@ -54,6 +48,8 @@ router.put('/:id', async (req, res) => {
 
         reminderToUpdate.name = req.body.name;
         reminderToUpdate.dueDate = req.body.dueDate;
+        reminderToUpdate.listId = req.body.listId;
+        reminderToUpdate.isCompleted = req.body.isCompleted;
 
         const updatedReminder = await reminderToUpdate.save();
         if (!updatedReminder) throw Error('An error occured updating the reminder')
@@ -62,11 +58,12 @@ router.put('/:id', async (req, res) => {
     }
     catch (err) {
         if (err.message === 'Reminder not found') {
-            res.status(404).json({ success: false, message: err.message})
+            res.status(404).json({ success: false, message: err.message })
         }
         else {
-            res.status(400).json({ success: false, message: err.message})
-        }    }
+            res.status(400).json({ success: false, message: err.message })
+        }
+    }
 });
 
 // @route DELETE api/reminders/:id
@@ -84,10 +81,10 @@ router.delete('/:id', async (req, res) => {
     }
     catch (err) {
         if (err.message === 'Reminder not found') {
-            res.status(404).json({ success: false, message: err.message})
+            res.status(404).json({ success: false, message: err.message })
         }
         else {
-            res.status(400).json({ success: false, message: err.message})
+            res.status(400).json({ success: false, message: err.message })
         }
     }
 });
