@@ -41,7 +41,7 @@ const MyLists = (props) => {
                         button = (
                             <div>
                                 {list.count}
-                                <Button variant="primary round" onClick={() => { viewReminders(list.id) }}>
+                                <Button variant="primary round" onClick={() => { viewReminders(list._id) }}>
                                     <FontAwesomeIcon style={faStyle} icon={faChevronRight}></FontAwesomeIcon>
                                 </Button>
                             </div>
@@ -50,7 +50,7 @@ const MyLists = (props) => {
                     else {
                         button = (
                             <div>
-                                <Button variant="primary round" onClick={() => { dispatch(deleteList(list.id)) }}>
+                                <Button variant="primary round" onClick={() => { dispatch(deleteList(list._id)) }}>
                                     <FontAwesomeIcon style={faStyle} icon={faTrashAlt}></FontAwesomeIcon>
                                 </Button>
                             </div>
@@ -68,7 +68,7 @@ const MyLists = (props) => {
                     </ListGroup.Item>
                 })}
             </ListGroup>
-            <Row>
+            <Row style={{ marginTop: '1rem' }}>
                 <Button variant='new' className='align-items-center' onClick={() => setModalShow(true)}>
                     <FontAwesomeIcon icon={faPlusCircle} /> Add List
                 </Button>

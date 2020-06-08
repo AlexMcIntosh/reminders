@@ -11,18 +11,24 @@ export const getLists = () => dispatch => {
                 type: GET_LISTS,
                 payload: res.data
             });
-            dispatch(setLoading());
         })
-        .catch(err => {
-            console.log(err);
-        });
+        .then(() => dispatch(setLoading()))
+        .catch(err => console.log(err));
 }
 
-export const addList = (list) => {
-    return {
-        type: ADD_LIST,
-        payload: list
-    }
+export const addList = (list) => dispatch => {
+    dispatch(setLoading());
+    axios
+        .post('/api/lists', list)
+        .then(res => {
+            dispatch({
+                type: ADD_LIST,
+                payload: res.data
+            });
+        })
+        .then(() => dispatch(getLists()))
+        .then(() => dispatch(setLoading()))
+        .catch(err => console.log(err));
 }
 
 export const editList = (isEditing) => {
@@ -32,9 +38,17 @@ export const editList = (isEditing) => {
     }
 }
 
-export const deleteList = (id) => {
-    return {
-        type: DELETE_LIST,
-        payload: id
-    }
+export const deleteList = (id) => dispatch => {
+    dispatch(setLoading());
+    axios
+        .delete(`/api/lists/${id}`)
+        .then(res => {
+            dispatch({
+                type: DELETE_LIST,
+                payload: id
+            });
+        })
+        .then(() => dispatch(getLists()))
+        .then(() => dispatch(setLoading()))
+        .catch(err => console.log(err));
 }

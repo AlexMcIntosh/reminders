@@ -34,7 +34,7 @@ const Reminders = (props) => {
     const { listId } = props.match.params;
     const { lists } = useSelector(state => state.list);
     const { reminders } = useSelector(state => state.reminder);
-    const [list] = useState(lists.find(list => { return list.id === listId }));
+    const [list] = useState(lists.find(list => { return list._id === listId }));
     const [modalShow, setModalShow] = useState(false);
     const [isTodayList] = useState(listId === 'today');
 
