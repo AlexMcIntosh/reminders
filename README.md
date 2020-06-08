@@ -52,6 +52,6 @@ npm run client
 npm run server
 ```
 # Demo
-![Home](https://github.com/AlexMcIntosh/reminders/tree/master/images/Home.png)
+![Home](https://github.com/AlexMcIntosh/reminders/tree/master/images/Home.png?raw=true)
 
-![Reminders](https://github.com/AlexMcIntosh/reminders/tree/master/images/Reminders.png)
+![Reminders](https://github.com/AlexMcIntosh/reminders/tree/master/images/Reminders.png?raw=true)
