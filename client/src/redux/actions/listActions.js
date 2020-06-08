@@ -23,7 +23,7 @@ export const addList = (list) => dispatch => {
         .then(res => {
             dispatch({
                 type: ADD_LIST,
-                payload: res.data
+                payload: list
             });
         })
         .then(() => dispatch(getLists()))

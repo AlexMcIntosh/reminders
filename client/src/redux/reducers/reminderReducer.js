@@ -17,6 +17,16 @@ export default function (state = initialState, action) {
                 reminders: [...state.reminders, action.payload]
             }
         case COMPLETE_REMINDER:
+            let indexOfReminder = state.reminders
+                .map(reminder => { return reminder._id })
+                .indexOf(action.payload);
+
+            if (indexOfReminder !== -1) {
+                let reminder = state.reminders[indexOfReminder];
+                reminder.isCompleted = !reminder.isCompleted;
+                state.reminders[indexOfReminder] = reminder;
+            }
+
             return {
                 ...state,
                 reminders: [...state.reminders]

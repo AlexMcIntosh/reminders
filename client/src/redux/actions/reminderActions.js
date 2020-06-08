@@ -23,7 +23,7 @@ export const addReminder = (reminder) => dispatch => {
         .then(res => {
             dispatch({
                 type: ADD_REMINDER,
-                payload: res.data
+                payload: reminder
             });
         })
         .then(() => dispatch(getReminders()))
