@@ -1,4 +1,4 @@
-# Reminders
+# Reminderz
 Reminders is a iOS inspired reminders React app built using the MERN stack.
 
 ## Quick start
